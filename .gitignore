@@ -1,0 +1,32 @@
+# Entornos virtuales
+venv/
+.env/
+.envs/
+.venv/
+
+# Archivos de Python compilados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos de configuración de IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Archivos de logs y temporales
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Configuración de dependencias
+pip-log.txt
+*.egg-info/
+dist/
+build/
