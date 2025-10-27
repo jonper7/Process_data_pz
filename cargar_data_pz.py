@@ -68,6 +68,21 @@ try:
 except Exception:
     pass
 
+# ========= ELIMINAR DUPLICADOS DE SENSOR_DATA_1 =========
+print("🧹 Eliminando duplicados en sensor_data_1...")
+cursor.execute("""
+    DELETE FROM "MV_PIEZOMETROS".sensor_data_1 a
+    USING "MV_PIEZOMETROS".sensor_data_1 b
+    WHERE a.sensor_code = b.sensor_code
+      AND a.data_time = b.data_time
+      AND a.ctid < b.ctid;
+""")
+duplicados_borrados = cursor.rowcount  # número de filas eliminadas
+conexion.commit()
+
+print(f"✅ Duplicados eliminados: {duplicados_borrados}")
+
+
 # ========= 3. LEER DATOS DESDE LA TABLA SENSOR_DATA_1 =========
 query_sensor = """
 SELECT sensor_code,
