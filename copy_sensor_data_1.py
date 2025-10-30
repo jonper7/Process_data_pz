@@ -1,23 +1,25 @@
 import psycopg2
 from datetime import datetime
 
-# === CONFIGURACIÓN DE CONEXIONES ===
+# === CONFIGURACIÓN DE CONEXION SQL===
 ORIGEN = {
-    "host": "localhost",
-    "database": "HomeBase",
+    "host": "192.168.60.4",
+    "database": "postgres",
     "user": "postgres",
-    "password": "JONPER"
+    "password": "zgky1234!",
+     "port": "3482"
 }
 
 DESTINO = {
-    "host": "localhost",
-    "database": "postgres",
-    "user": "postgres",
-    "password": "JONPER"
+    "host": "192.168.60.175",
+    "database": "gdr_database",
+    "user": "alexism",
+    "password": "Data.GDR$2024",
+     "port": "5432"
 }
 
-TABLA = '"MV_PIEZOMETROS".sensor_data_1'  # esquema.tabla destino
-TABLA_ORIGEN = 'public.sensor_data_1'     # esquema.tabla origen
+TABLA = '"MV_PIEZOMETROS".sensor_data_1'  # esquema.tabla destino (gdr_database)
+TABLA_ORIGEN = 'public.sensor_data_1'     # esquema.tabla origen (postgres plataforma SINOSTEEL)
 
 
 print("⏳ Iniciando copia de datos:", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
@@ -34,7 +36,7 @@ try:
     conn_destino = psycopg2.connect(**DESTINO)
     cur_destino = conn_destino.cursor()
 
-    # Vaciar tabla destino antes de copiar (opcional)
+    # Vaciar tabla destino antes de copiar
     cur_destino.execute(f"TRUNCATE TABLE {TABLA};")
 
     # Insertar registros automáticamente según número de columnas

@@ -8,10 +8,10 @@ inicio = time.time()
 
 # ========= 1. CONFIGURACIÓN DE CONEXIÓN =========
 conexion = psycopg2.connect(
-    host="localhost",
-    database="postgres",
-    user="postgres",
-    password="JONPER",
+    host="192.168.60.175",
+    database="gdr_database",
+    user="alexism",
+    password="Data.GDR$2024",
     port="5432"
 )
 cursor = conexion.cursor()
